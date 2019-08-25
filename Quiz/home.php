@@ -17,9 +17,9 @@
       <nav role="navigation">
         <ul class="nav">
           <li><a href="home.php"><i class="fa fa-home" style="font-size:36px"></i></a></li>
-          <li><a href="#"><i class="fa fa-user-plus" style="font-size:36px"></i></a></li>
+          <li><a href="signup.php"><i class="fa fa-user-plus" style="font-size:36px"></i></a></li>
           <li><a href="log.php"><i class="fa fa-user-circle" style="font-size:36px"></i></a></li>
-          <li><a href="#"><i class="fa fa-power-off" style="font-size:36px"></i></a></li>
+          <li><a href="home.php"><i class="fa fa-power-off" style="font-size:36px"></i></a></li>
         </ul>
       </nav> 
     </header>
