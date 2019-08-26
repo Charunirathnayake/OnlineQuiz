@@ -1,3 +1,7 @@
+<?php 
+ require'registration.php'; 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +18,12 @@
 	<div class="loginbox">
 		<img src="Images/avatar.png" class="avatar">
 		<h1>Login Here</h1>
-		<form>
+		<form action="log.php" method="post">
 			<p>Username</p>
-			<input type="text" name="user" placeholder="Enter Username">
+			<input type="text" name="uname" placeholder="Enter Username">
 			<p>Password</p>
-			<input type="Password" name="Password" placeholder="Enter Password">
-			<input type="submit" name="" value="Login">
+			<input type="Password" name="password" placeholder="Enter Password">
+			<input type="submit" name="login" value="Login">
 			<a href="#">Lost Your Password?</a><br>
 			<a href="signup.php">Don't have an account?</a>
 		</form>

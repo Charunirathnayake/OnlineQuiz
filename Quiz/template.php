@@ -1,8 +1,9 @@
-<?php 
-session_start();
-if (isset($_SESSION['uname'])) {
-	# code...
-	$_SESSION['msg'] = "you must log in first to view this page";
-	header("location : login.php");
-
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>template</title>
+</head>
+<body>
+jccccccccccccccccccccccccccccccccccccccccccccccfk
+</body>
+</html>

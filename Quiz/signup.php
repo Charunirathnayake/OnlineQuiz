@@ -1,3 +1,8 @@
+
+<?php 
+ require'registration.php'; 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +18,12 @@
 
 <div class="sign">
 	<h2 class="head">Sign up Here</h2>
-	<form action="signup.php" method="POST">
+	<form action="signup.php" method="post">
 			<input type="text" name="uname" placeholder="Username" required><br><br>
 			<input type="text" name="email" placeholder="E-Mail Address" required><br><br>
 			<input type="password" name="password" placeholder="Password" required><br><br>
 			<input type="password" name="retypepw" placeholder="Retype the password" required><br><br>
-			<input type="submit" value="Submit" name="sign">
+			<input type="submit" value="submit" name="submit">
 			<br><br>
 			<p>Already you have an account?<a href="log.php">login</a></p>
 

@@ -1,54 +1,93 @@
- <?php require'connection.php'; 
+ <?php
 
-$USER="";
-$EMAIL="";
-$PASS="";
-$REPASS="";
+	
 
-$errors=array();
+  require'connection.php'; 
 
-$USER=mysqli_escape_string($connection,$_POST['uname']);
-$EMAIL=mysqli_real_escape_string($connection,$_POST['email']);
-$PASS=mysqli_real_escape_string($connection,$_POST['password']);
-$REPASS=mysqli_real_escape_string($connection,$_POST['retypepw']);
 
-//form validation
- if(empty($USER)){array_push($errors,"Username is required");}
- if(empty($EMAIL)){array_push($errors,"Email is required");}
- if(empty($PASS)){array_push($errors,"password is required");}
- if(empty($PASS!=$REPASS)){array_push($errors,"Password do not required");}
-
-//check db for exixting user with other username
-
-$user_check_query="SELECT * FROM user WHERE uname='$USER' or email='$EMAIL' LIMIT 1";
-
-$results=mysqli_query($connection,$user_check_query);
-$user=mysqli_fetch_assoc($results);
-
-if ($user){
-	if ($user['uname']===$USER) {
-		array_push($errors,"Username already exists");
+	$name="";
+	$email="";
+	$password="";
+	$confirmPassword="";
+	$errors=array();
+	if(!$connection){
+		
+		 die("sever can not connected".mysqli_error());
 	}
-	if ($user['email']===$EMAIL) {
-		array_push($errors,"Email already exists");
+	else{
+
+		$select=mysqli_select_db($connection,'quiz') or die ("Database not conected");
+
+		if(isset($_POST['submit'])){
+	$name=mysqli_real_escape_string($connection,$_POST['uname']);
+	$email=mysqli_real_escape_string($connection,$_POST['email']);
+	$password=mysqli_real_escape_string($connection,$_POST['password']);
+	$confirmPassword=mysqli_real_escape_string($connection,$_POST['retypepw']);
+	
+
+	if(empty($name)){
+		array_push($errors,"User Name is required.");
 	}
+	
+	if (empty($email)) {
+	array_push($errors,"E mail is required");}
+	if(empty($password)){
+	array_push($errors,"Password is required");}
+	if (empty($confirmPassword)) {
+		array_push($errors,"Confirm password is required");
+	}
+	if (count($errors)==0) {
+		$password=md5($password);
+		$sql="INSERT INTO user(username,email,password,repassword)VALUES('$name','$email','$password','$confirmPassword')";
+		mysqli_query($connection,$sql);
+		$_SESSION['uname']=$name;
+		$_SESSION['success']="Your Registration is successfully!";
+		header('location: template.php');
+		
+	}
+	
+	
+	} }
+	
 
-}
+		if (isset($_POST['login'])) {
+			$name=mysqli_real_escape_string($connection,$_POST['uname']);
+			$password=mysqli_real_escape_string($connection,$_POST['password']);
 
-//no errors,register the users
-if (count($errors)==0) {
-	# code...
-	 $password=md5($password);
-	 $query="INSERT INTO user(username,email,password,repassword) VALUES ('$USER','$EMAIL','PASS','REPASS')";
-	 mysqli_query($connection,$query);
-	 $_SESSION['uname']=$USER;
-	 $_SESSION['success']="You are now logged in";
-	 header('location:template.php');
+			if (empty($name)) {
+				array_push($errors,"User Name is required");
+			}
+			if (empty($password)) {
+				array_push($errors,"Password is required");
+			}
+			if (count($errors)==0) {
 
-}
- ?>
+				$password=md5('password');
+				$query="SELECT * FROM user WHERE username='$name' AND password='$password'";
+				$result=mysqli_query($connection,$query);
+				$num=mysqli_num_rows($result);
+				if($num==0){
+					$_SESSION['user']=$name;
+					$_SESSION['success']="Your Login successfully!";
+					header('location: template.php');
+				}
+				else{
+					array_push($errors,"Please enter the correct details");
+					header('location:log.php');
+				}
+			}
+		}
 
+		if (isset($_GET['logout'])) {
+			$name=mysqli_real_escape_string($connection,$_POST['uname']);
+			$_SESSION['uname']=$name;
+			session_destroy();
+			unset($_SESSION['uname']);
+			header('location: home.php');
+		}
 
+mysqli_close($connection);
+	?>
 
 
 
