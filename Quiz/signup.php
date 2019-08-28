@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="nav">
-		<a href="home.php"><i class="fa fa-home" style="font-size:36px"></i></a>
+		<a href="home.php"><i class="fa fa-home" style="font-size:26px"></i></a>
       </div>
 
 

@@ -6,6 +6,12 @@ body{
 }
 .nav a{
  color: #d500f9;
+ float: right;
+ padding: 15px;
+}
+
+.nav a:hover{
+	color: white;
 }
 .sign{
 	width: 350px;

@@ -7,7 +7,7 @@ session_start();
 
 	}
 	else{
-		echo "connection successful";
+		echo " .";
 	}
 
 ?>

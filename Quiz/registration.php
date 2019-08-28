@@ -42,7 +42,7 @@
 		mysqli_query($connection,$sql);
 		$_SESSION['uname']=$name;
 		$_SESSION['success']="Your Registration is successfully!";
-		header('location: template.php');
+		header('location: quiztemplate.php');
 		
 	}
 	
@@ -69,11 +69,11 @@
 				if($num==0){
 					$_SESSION['user']=$name;
 					$_SESSION['success']="Your Login successfully!";
-					header('location: template.php');
+					header('location: quiztemplate.php');
 				}
 				else{
 					array_push($errors,"Please enter the correct details");
-					header('location:log.php');
+					header('location: log.php');
 				}
 			}
 		}
